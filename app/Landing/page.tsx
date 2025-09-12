@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Landing = () => {
-  return (
+  return ( <>
     <div className='landiing-container'>
       <div className='header bg-[#Eff2c0] text-black p-1'>
         <div className='logo text-4xl font-extrabold'>TMS</div>
@@ -14,6 +14,9 @@ const Landing = () => {
                 <div className='bg-[#Eff2c0] border-2 border-black text-2xl px-4 py-2 rounded-full text-black hover:bg-black hover:border-2 hover:border-[#Eff2c0] hover:text-[#eff2c0] transition-colors duration-300 cursor-pointer'>Signup</div>
             </div>
         </div>
+    {/* end of content */}
+
+
     {/* <div className='form'>
         <form className=" items-center bg-[#A4BAB7] shadow-lg rounded-lg p-8 w-full max-w-md mx-auto mt-28">
             <label className=" self-auto text-3xl font-extrabold mb-6 text-gray-800">Sign Up for TMS</label>
@@ -31,7 +34,11 @@ const Landing = () => {
         </form>
         </div> */}
     </div>
-  )
+        <div className='footer bg-[#Eff2c0] text-black p-4 mt-60 text-center'>
+            <small>&copy; 2024 TMS. All rights reserved.</small>
+        </div>
+ 
+</>  )
 }
 
 export default Landing
