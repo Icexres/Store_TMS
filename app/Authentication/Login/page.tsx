@@ -1,6 +1,27 @@
+'use client'
 import React from 'react'
 import Link from 'next/link'
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { auth } from '../../../lib/firebase'; // Adjust path as needed
+import { signInWithEmailAndPassword } from "firebase/auth";
 const Login = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const router = useRouter();
+
+    async function handleLogin(e: React.FormEvent) {
+        e.preventDefault();
+        setError("");
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            router.push("/Dashboard");
+        } catch (error: any) {
+            setError("Failed to log in: " + error.message);
+        }
+    }
+
   return (<>
     <div className='Login-container'>
       <div className='header bg-[#Eff2c0] text-black p-1'>
@@ -8,20 +29,27 @@ const Login = () => {
       </div>
         {/* end of header */}
     <div className='form'>
-        <form className="items-center bg-[#A4BAB7] shadow-lg rounded-lg p-8 w-full max-w-md mx-auto mt-28">
+        <form onSubmit={handleLogin} className="items-center bg-[#A4BAB7] shadow-lg rounded-lg p-8 w-full max-w-md mx-auto mt-28">
             <div className="self-auto text-3xl font-extrabold mb-4 text-gray-800">Log in</div>
             <label className="block text-gray-700 font-semibold mb-2" htmlFor="email">Email:</label>
             <input
             type="text"
             placeholder="Enter your email"
             className=" text-black p-3 mb-4 w-full border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#0070f3] transition"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            required
             />
             <label className="block text-gray-700 font-semibold mb-2" htmlFor="password">Password:</label>
             <input
             type="password"
             placeholder="Password"
             className=" text-black p-3 mb-4 w-full border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#0070f3] transition"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            required
             />
+            {error && <div className="text-red-500 mb-4">{error}</div>}
             <div className="flex justify-center">
                 <button type="submit" className="bg-[#0070f3] hover:bg-[#005bb5] text-white font-semibold py-3 px-6 rounded transition">Login</button>
             </div>
