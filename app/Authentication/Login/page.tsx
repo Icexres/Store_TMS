@@ -1,10 +1,10 @@
 import React from 'react'
-
+import Link from 'next/link'
 const Login = () => {
   return (<>
     <div className='Login-container'>
       <div className='header bg-[#Eff2c0] text-black p-1'>
-        <div className='logo text-4xl font-extrabold'>TMS</div>
+        <Link href="/"> <div className='logo text-4xl font-extrabold'>TMS</div></Link>
       </div>
         {/* end of header */}
     <div className='form'>
