@@ -3,8 +3,9 @@ import React from 'react'
 import Link from 'next/link'
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { auth } from '../../../lib/firebase'; // Adjust path as needed
+import { auth, db } from '../../../lib/firebase'; // Adjust path as needed
 import { signInWithEmailAndPassword } from "firebase/auth";
+import {doc,getDoc} from 'firebase/firestore';
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -15,13 +16,22 @@ const Login = () => {
         e.preventDefault();
         setError("");
         try {
-            await signInWithEmailAndPassword(auth, email, password);
-            router.push("/Dashboard");
-        } catch (error: any) {
-            setError("Failed to log in: " + error.message);
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const uid= userCredential.user.uid;
+            //fetch role
+            const userDoc= await getDoc(doc(db,"users",uid));
+            const role= userDoc.exists()? userDoc.data().role : null;
+            if(role=== "admin"){
+            router.push("/Dashboard/AdminDashboard");
+        } else if(role=== "user"){
+            router.push("/Dashboard/UserDashboard");
+        } else {
+            setError("No role assigned. Contact admin.");
         }
+    } catch (err:any) {
+        setError("Failed to log in: " + err.message);
     }
-
+}
   return (<>
     <div className='Login-container'>
       <div className='header bg-[#Eff2c0] text-black p-1'>
