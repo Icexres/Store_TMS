@@ -16,11 +16,10 @@ const UserDashboard = () => {
         router.push('/Authentication/Login');
     };
   return (
-    <div>
-      <h1>User Dashboard</h1>
-      <button onClick={handleLogout} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4">
-        Logout
-      </button>
+    <div className='admin-container'>
+      <div className='header bg-[#Eff2c0] text-black p-1'>
+        <div className='logo text-4xl font-extrabold'>USER PANNEL</div>
+      </div>
     </div>
   )
 }
