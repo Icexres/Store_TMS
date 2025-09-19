@@ -28,7 +28,7 @@ export async function POST(req: Request) {
 
     const { amount, productName, transactionId, method } = paymentData;
 
-    if (!amount || !productName || !transactionId || !method) {
+    if (!amount || !transactionId || !method) {
       console.error("Missing required fields:", paymentData);
       return NextResponse.json(
         { error: "Missing required fields" },

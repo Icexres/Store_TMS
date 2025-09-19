@@ -91,7 +91,6 @@ const [transactionId, setTransactionId] = useState<string>("");
         body: JSON.stringify({
           method: "esewa",
           amount,
-          productName,
           transactionId,
         }),
       });
@@ -208,7 +207,7 @@ const [transactionId, setTransactionId] = useState<string>("");
             <Button
               type="submit"
               className="w-full"
-              disabled={isLoading || !amount || transactionId}
+              disabled={isLoading || !amount || !transactionId}
             >
               {isLoading ? "Processing..." : "Pay with eSewa"}
             </Button>
