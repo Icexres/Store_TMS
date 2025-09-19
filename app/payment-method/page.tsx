@@ -118,7 +118,7 @@ const amount = searchParams.get("amount") || "";
                     selectedMethod === method.name &&
                       "border-2 bg-gray-200/60 border-primary"
                   )}
-                  onClick={() => setSelectedMethod(method.name)}
+                  onClick={() => handlePayment(method.name)}
                 >
                   <motion.div
                     className={`mr-2 h-4 w-4 rounded-full ${method.color}`}

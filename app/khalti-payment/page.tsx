@@ -132,6 +132,7 @@ useEffect(() => {
                   id="amount"
                   type="number"
                   value={amount}
+                  readOnly
                   onChange={(e) => setAmount(e.target.value)}
                   required
                 />
@@ -150,6 +151,7 @@ useEffect(() => {
                 <Label htmlFor="transactionId">Transaction ID</Label>
                 <Input
                   id="transactionId"
+                  readOnly
                   value={transactionId}
                   onChange={(e) => setTransactionId(e.target.value)}
                   required

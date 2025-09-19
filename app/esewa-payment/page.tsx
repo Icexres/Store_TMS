@@ -170,6 +170,7 @@ const [transactionId, setTransactionId] = useState<string>("");
                 id="amount"
                 type="number"
                 value={amount}
+                readOnly
                 onChange={(e) => setAmount(e.target.value)}
                 required
                 min="1"
@@ -196,6 +197,7 @@ const [transactionId, setTransactionId] = useState<string>("");
               <Input
                 id="transactionId"
                 value={transactionId}
+                readOnly
                 onChange={(e) => setTransactionId(e.target.value)}
                 required
                 placeholder="Enter transaction ID"
