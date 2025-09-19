@@ -27,7 +27,7 @@ const AdminDashboard = () => {
       </div>
       <div className='nav and content flex flex-row'>
         <div className='sidebar w-1/6 bg-[#3a4241] h-screen p-4'>
-          <ul className='space-y-4'>
+          <ul className='space-y-4 mt-2'>
             <li onClick={() => setActivePage("profile")}>Profile</li>
             <li onClick={() => setActivePage("addItems")}>Add items</li>
             <li onClick={() => setActivePage("viewItems")}>View items</li>
