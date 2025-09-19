@@ -1,0 +1,23 @@
+.esewaRoot {
+  min-height: 100vh;
+  background: #FFFFFF; /* light green background */
+  color: #087b3c;      /* eSewa green text */
+  font-family: 'Trebuchet MS', Verdana, sans-serif; /* Example: different font */
+  padding: 2rem;
+}
+
+.esewaTitle {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.esewaCard {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 16px rgba(8,123,60,0.08); /* subtle green shadow */
+  padding: 2rem;
+  max-width: 500px;
+  margin: 0 auto;
+}

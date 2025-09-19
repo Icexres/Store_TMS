@@ -150,6 +150,13 @@ const Transaction = () => {
         )}
         {error && <div className="text-red-500 mt-2">{error}</div>}
         <div className="mt-4 font-bold">Total: Rs.{total}</div>
+        <button
+          className="mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
+          onClick={() => window.location.href = `/payment-method?amount=${total}`}
+          disabled={cart.length === 0}
+        >
+          Payment Methods
+        </button>
         {/* Add a checkout button and logic here if needed */}
       </div>
     </div>

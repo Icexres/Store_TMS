@@ -1,0 +1,23 @@
+.khaltiRoot {
+  min-height: 100vh;
+  background: #f9f6ee;
+  color: #2d006b;
+  font-family: 'Comic Sans MS', cursive, sans-serif; /* Example: custom font */
+  padding: 2rem;
+}
+
+.khaltiTitle {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.khaltiCard {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 16px rgba(80,0,120,0.08);
+  padding: 2rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
