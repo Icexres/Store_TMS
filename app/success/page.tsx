@@ -13,14 +13,30 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Suspense } from "react";
+import { db } from "@/lib/firebase";
+import { doc, updateDoc, getDoc } from "firebase/firestore";
 
 function PaymentSuccessContent() {
   const searchParams = useSearchParams();
   const method = searchParams.get("method");
 
   useEffect(() => {
+    async function updateQuantities() {
+      const purchasedItems = JSON.parse(localStorage.getItem("purchasedItems") || "[]");
+      for (const item of purchasedItems) {
+        const itemRef = doc(db, "items", item.id);
+        const itemSnap = await getDoc(itemRef);
+        if (itemSnap.exists()) {
+          const currentQuantity = itemSnap.data().quantity || 0;
+          const newQuantity = Math.max(0, currentQuantity - item.quantity);
+          await updateDoc(itemRef, { quantity: newQuantity });
+        }
+      }
+      localStorage.removeItem("purchasedItems");
+    }
+
     if (method) {
-      console.log(`Payment successful via ${method}`);
+      updateQuantities();
     }
   }, [method]);
 
@@ -54,7 +70,7 @@ function PaymentSuccessContent() {
                 successfully.
               </p>
               {method && (
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-500 overflow-hidden text-ellipsis">
                   Payment method:{" "}
                   <span className="font-semibold">{method}</span>
                 </p>
