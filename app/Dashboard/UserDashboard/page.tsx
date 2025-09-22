@@ -22,7 +22,7 @@ const UserDashboard = () => {
   return (
     <div className='admin-container'>
       <div className='header bg-[#Eff2c0] text-black p-1 flex flex-row justify-between items-center'>
-        <div className='logo text-4xl font-extrabold'>ADMIN PANNEL</div>
+        <div className='logo text-4xl font-extrabold'>USER PANNEL</div>
           <div onClick={handleLogout} className="cursor-pointer bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded inline-block">Logout</div>
       </div>
       <div className='nav and content flex flex-row'>
