@@ -47,10 +47,10 @@ const buttonVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.3,
-      type: "spring",
-      stiffness: 300,
-      damping: 24,
+      duration: 0.5,
+      type: "spring" as const,
+      stiffness: 120,
+      damping: 10,
     },
   },
   tap: {
@@ -58,8 +58,8 @@ const buttonVariants = {
     transition: { duration: 0.1 },
   },
   hover: {
-    scale: 1.02,
-    transition: { duration: 0.2 },
+    scale: 1.05,
+    transition: { duration: 0.1 },
   },
 };
 

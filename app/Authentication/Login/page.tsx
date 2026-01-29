@@ -35,7 +35,7 @@ const Login = () => {
   return (<>
     <div className='Login-container'>
       <div className='header bg-[#Eff2c0] text-black p-1'>
-        <Link href="/"> <div className='logo text-4xl font-extrabold'>BMS</div></Link>
+        <Link href="/"> <div className='logo text-4xl font-extrabold'>BIMS</div></Link>
       </div>
         {/* end of header */}
     <div className='form'>
@@ -67,7 +67,7 @@ const Login = () => {
         </div>
     </div>
     <div className='footer bg-[#Eff2c0] text-black p-4 mt-60 text-center'>
-            <small>&copy; 2025 BMS. All rights reserved.</small>
+            <small>&copy; 2025 BIMS. All rights reserved.</small>
         </div>
   </>
   )
