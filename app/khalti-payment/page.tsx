@@ -80,6 +80,8 @@ useEffect(() => {
     setIsLoading(true);
 
     try {
+      console.log("Sending payment request:", { method: "khalti", amount, productName, transactionId });
+      
       const response = await fetch("/api/initiate-payment", {
         method: "POST",
         headers: {
@@ -94,10 +96,13 @@ useEffect(() => {
       });
 
       if (!response.ok) {
-        throw new Error("Payment initiation failed");
+        const errorData = await response.json();
+        console.error("Payment error response:", errorData);
+        throw new Error(errorData.error || "Payment initiation failed");
       }
 
       const data = await response.json();
+      console.log("Payment response:", data);
 
       if (!data.khaltiPaymentUrl) {
         throw new Error("Khalti payment URL not received");
@@ -105,7 +110,7 @@ useEffect(() => {
       window.location.href = data.khaltiPaymentUrl;
     } catch (error) {
       console.error("Payment error:", error);
-      alert("Payment initiation failed. Please try again.");
+      alert(`Payment initiation failed: ${error instanceof Error ? error.message : "Please try again."}`);
     } finally {
       setIsLoading(false);
     }

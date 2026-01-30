@@ -7,6 +7,7 @@ import useRoleGuard from '../../Guards/useRoleGuard';
 import Additems from '@/components/Additems';
 import ViewItems from '@/components/Viewitems';
 import Profile from '@/components/profile';
+import TransactionHistory from '@/components/TransactionHistory';
 const AdminDashboard = () => {
   const router = useRouter();
   const { loading, authorized } = useRoleGuard("admin");
@@ -28,15 +29,17 @@ const AdminDashboard = () => {
       <div className='nav and content flex flex-row'>
         <div className='sidebar w-1/6 bg-[#3a4241] h-screen p-4'>
           <ul className='space-y-4 mt-2'>
-            <li onClick={() => setActivePage("profile")}>Profile</li>
-            <li onClick={() => setActivePage("addItems")}>Add items</li>
-            <li onClick={() => setActivePage("viewItems")}>View items</li>
+            <li onClick={() => setActivePage("profile")} className="cursor-pointer hover:text-[#Eff2c0] transition">Profile</li>
+            <li onClick={() => setActivePage("addItems")} className="cursor-pointer hover:text-[#Eff2c0] transition">Add items</li>
+            <li onClick={() => setActivePage("viewItems")} className="cursor-pointer hover:text-[#Eff2c0] transition">View items</li>
+            <li onClick={() => setActivePage("transactionHistory")} className="cursor-pointer hover:text-[#Eff2c0] transition">Transaction History</li>
           </ul>
         </div>
         <div className='content w-5/6 p-4'>
           {activePage === "addItems" && <Additems />}
           {activePage === "viewItems" && <ViewItems role={'admin'} />}
           {activePage === "profile" && <Profile />}
+          {activePage === "transactionHistory" && <TransactionHistory role={'admin'} />}
         </div>
       </div>
     </div>

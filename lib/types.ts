@@ -47,3 +47,25 @@ export interface DummyDataResponse {
   productName: string;
   transactionId: string;
 }
+
+// Transaction History Types
+export interface TransactionItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  total: number;
+}
+
+export interface Transaction {
+  id: string;
+  userId: string;
+  username: string;
+  userEmail: string;
+  items: TransactionItem[];
+  totalAmount: number;
+  paymentMethod: PaymentMethod;
+  status: "completed" | "pending" | "failed";
+  timestamp: any; // Firebase Timestamp
+  date: string;
+}

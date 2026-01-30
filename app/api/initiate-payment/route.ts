@@ -28,6 +28,8 @@ export async function POST(req: Request) {
 
     const { amount, productName, transactionId, method } = paymentData;
 
+    console.log("Payment data received:", { amount, productName, transactionId, method });
+
     if (!amount || !transactionId || !method) {
       console.error("Missing required fields:", paymentData);
       return NextResponse.json(
@@ -82,13 +84,15 @@ export async function POST(req: Request) {
           website_url: process.env.NEXT_PUBLIC_BASE_URL!,
           amount: Math.round(parseFloat(amount) * 100),
           purchase_order_id: transactionId,
-          purchase_order_name: productName,
+          purchase_order_name: productName || "Store Purchase",
           customer_info: {
             name: "dai",
             email: "dai@gmail.com",
             phone: "9800000000",
           },
         };
+
+        console.log("Khalti config:", khaltiConfig);
 
         const response = await fetch(
           "https://a.khalti.com/api/v2/epayment/initiate/",
