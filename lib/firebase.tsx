@@ -1,5 +1,5 @@
 //This is Firebase config file
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
@@ -13,7 +13,23 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-const app = initializeApp(firebaseConfig);
+// Runtime validation: fail early with a helpful message if the API key is missing
+if (!firebaseConfig.apiKey) {
+  // Log more details in dev to help debugging
+  if (process.env.NODE_ENV !== "production") {
+    // eslint-disable-next-line no-console
+    console.error(
+      "Missing NEXT_PUBLIC_FIREBASE_API_KEY. Add it to your .env.local (or environment) and restart the dev server. Current value:",
+      firebaseConfig.apiKey,
+    );
+  }
+  throw new Error(
+    "Firebase configuration error: NEXT_PUBLIC_FIREBASE_API_KEY is missing or invalid. See .env.local",
+  );
+}
+
+// Avoid re-initializing app during HMR / multiple imports
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
 export const auth = getAuth(app);
 export const db = getFirestore(app);
